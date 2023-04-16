@@ -1,2 +1,4 @@
-package ru.javarush;public class Main {
+package ru.javarush;
+
+public class Main {
 }
