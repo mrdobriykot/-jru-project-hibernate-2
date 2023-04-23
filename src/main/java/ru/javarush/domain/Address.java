@@ -1,6 +1,9 @@
 package ru.javarush.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(schema = "movie", name = "address")
@@ -17,4 +20,21 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    private String phone;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdate;
+
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
+    }
 }
