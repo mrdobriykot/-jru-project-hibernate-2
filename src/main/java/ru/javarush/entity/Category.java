@@ -25,7 +25,7 @@ public class Category {
     @JoinTable(name = "film_category",
             joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "film_id",referencedColumnName = "film_id"))
-    private Set<Category> films;
+    private Set<Film> films;
 
     public Byte getId() {
         return id;
@@ -51,11 +51,11 @@ public class Category {
         this.lastUpdate = lastUpdate;
     }
 
-    public Set<Category> getFilms() {
+    public Set<Film> getFilms() {
         return films;
     }
 
-    public void setFilms(Set<Category> films) {
+    public void setFilms(Set<Film> films) {
         this.films = films;
     }
 }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(schema = "movie", name = "inventory")
 public class Inventory {
     @Id
-    @Column(name = "inventoryi_id")
+    @Column(name = "inventory_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

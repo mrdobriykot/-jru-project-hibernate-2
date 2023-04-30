@@ -18,7 +18,7 @@ public class FilmText {
     private String title;
     @Column(columnDefinition = "text")
     @Type(type = "text")
-    private String descriprion;
+    private String description;
 
     public Short getId() {
         return id;
@@ -45,10 +45,10 @@ public class FilmText {
     }
 
     public String getDescriprion() {
-        return descriprion;
+        return description;
     }
 
     public void setDescriprion(String descriprion) {
-        this.descriprion = descriprion;
+        this.description = descriprion;
     }
 }

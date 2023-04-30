@@ -26,7 +26,7 @@ public class Rental {
     private LocalDateTime returnDate;
 
     @ManyToOne
-    @JoinColumn(name = "stuff_id")
+    @JoinColumn(name = "staff_id")
     private Staff staff;
 
     public Integer getId() {
