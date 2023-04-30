@@ -1,4 +1,4 @@
-package ru.javarush.domain;
+package ru.javarush.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
