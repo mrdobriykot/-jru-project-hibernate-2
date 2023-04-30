@@ -4,6 +4,9 @@ package ru.javarush;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
+import ru.javarush.dao.ActorDAO;
+import ru.javarush.dao.AddressDAO;
+import ru.javarush.dao.CategoryDAO;
 import ru.javarush.entity.*;
 
 import java.util.Properties;
@@ -58,20 +61,20 @@ public class Main {
                 .addProperties(properties)
                 .buildSessionFactory();
 
-        actorDAO;
-        addressDAO;
-        categoryDAO;
-        cityDAO;
-        countryDAO;
-        customerDAO;
-        filmDAO;
-        filmTextDAO;
-        inventoryDAO;
-        languageDAO;
-        paymentDAO;
-        rentalDAO;
-        staffDAO;
-        storeDAO;
+        actorDAO = new ActorDAO(sessionFactory);
+        addressDAO = new AddressDAO(sessionFactory);
+        categoryDAO = new CategoryDAO(sessionFactory);
+        cityDAO = new CityDAO(sessionFactory);
+        countryDAO = new CountryDAO(sessionFactory);
+        customerDAO = new CustomerDAO(sessionFactory);
+        filmDAO = new FilmDAO(sessionFactory);
+        filmTextDAO = new FilmTextDAO(sessionFactory);
+        inventoryDAO = new InventoryDAO(sessionFactory);
+        languageDAO = new LanguageDAO(sessionFactory);
+        paymentDAO = new PaymentDAO(sessionFactory);
+        rentalDAO = new RentalDAO(sessionFactory);
+        staffDAO = new StaffDAO(sessionFactory);
+        storeDAO = new StoreDAO(sessionFactory);
     }
     public static void main(String[] args) {
         Main main = new Main();
