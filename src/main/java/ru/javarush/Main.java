@@ -11,6 +11,24 @@ import java.util.Properties;
 public class Main {
 
     private final SessionFactory sessionFactory;
+    private final ActorDAO actorDAO;
+    private final AddressDAO addressDAO;
+    private final CategoryDAO categoryDAO;
+    private final CityDAO cityDAO;
+    private final CountryDAO countryDAO;
+    private final CustomerDAO customerDAO;
+    private final FilmDAO filmDAO;
+    private final FilmTextDAO filmTextDAO;
+    private final InventoryDAO inventoryDAO;
+    private final LanguageDAO languageDAO;
+    private final PaymentDAO paymentDAO;
+    private final RentalDAO rentalDAO;
+    private final StaffDAO staffDAO;
+    private final StoreDAO storeDAO;
+
+
+
+
 
     private Main() {
         Properties properties =new Properties();
@@ -39,6 +57,21 @@ public class Main {
                 .addAnnotatedClass(Store.class)
                 .addProperties(properties)
                 .buildSessionFactory();
+
+        actorDAO;
+        addressDAO;
+        categoryDAO;
+        cityDAO;
+        countryDAO;
+        customerDAO;
+        filmDAO;
+        filmTextDAO;
+        inventoryDAO;
+        languageDAO;
+        paymentDAO;
+        rentalDAO;
+        staffDAO;
+        storeDAO;
     }
     public static void main(String[] args) {
         Main main = new Main();
