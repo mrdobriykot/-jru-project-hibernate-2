@@ -4,9 +4,7 @@ package ru.javarush;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import ru.javarush.dao.ActorDAO;
-import ru.javarush.dao.AddressDAO;
-import ru.javarush.dao.CategoryDAO;
+import ru.javarush.dao.*;
 import ru.javarush.entity.*;
 
 import java.util.Properties;
