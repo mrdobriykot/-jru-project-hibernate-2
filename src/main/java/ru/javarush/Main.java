@@ -1,12 +1,14 @@
 package ru.javarush;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import ru.javarush.dao.*;
 import ru.javarush.entity.*;
 
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 public class Main {
@@ -26,9 +28,6 @@ public class Main {
     private final RentalDAO rentalDAO;
     private final StaffDAO staffDAO;
     private final StoreDAO storeDAO;
-
-
-
 
 
     private Main() {
@@ -76,5 +75,44 @@ public class Main {
     }
     public static void main(String[] args) {
         Main main = new Main();
+        //Customer customer = main.createCustomer();
+        main.customerReturnInventoryToStore();
+    }
+
+    private Customer createCustomer() {
+        try(Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            Store store = storeDAO.getItems(0, 1).get(0);
+            City city = cityDAO.getByName("Kragujevac");
+            Address address = new Address();
+            address.setAddress("Fish str, 50");
+            address.setPhone("111-222-333");
+            address.setCity(city);
+            address.setDistrict("Gangnam");
+            addressDAO.save(address);
+
+            Customer customer = new Customer();
+            customer.setActive(true);
+            customer.setEmail("test@test.ru");
+            customer.setAddress(address);
+            customer.setStore(store);
+            customer.setFirstName("Ivan");
+            customer.setLastName("Lavrov");
+            customerDAO.save(customer);
+
+            session.getTransaction().commit();
+            return customer;
+        }
+    }
+
+    private void customerReturnInventoryToStore() {
+        try(Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+
+            Rental rental = rentalDAO.getAnyUnreturnedRental();
+            rental.setReturnDate(LocalDateTime.now());
+            rentalDAO.save(rental);
+            session.getTransaction().commit();
+        }
     }
 }

@@ -1,7 +1,6 @@
 package ru.javarush.entity;
 
 
-
 public enum Rating {
     G("G"),
     PG("PG"),
@@ -14,5 +13,9 @@ public enum Rating {
 
     Rating(String value) {
         this.VALUE = value;
+    }
+
+    public String getValue() {
+        return VALUE;
     }
 }
