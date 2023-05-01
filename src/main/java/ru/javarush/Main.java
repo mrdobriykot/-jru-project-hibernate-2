@@ -10,7 +10,11 @@ import ru.javarush.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Year;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 public class Main {
 
@@ -76,9 +80,49 @@ public class Main {
     }
     public static void main(String[] args) {
         Main main = new Main();
-        Customer customer = main.createCustomer();
+        //Customer customer = main.createCustomer();
         //main.customerReturnInventoryToStore();
-        main.customerRentInventory(customer);
+        //main.customerRentInventory(customer);
+        main.newFilmWasMade();
+    }
+
+    private void newFilmWasMade() {
+        try(Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+
+            Language language = languageDAO.getItems(0, 20).stream()
+                            .unordered()
+                            .findAny()
+                            .get();
+
+            List<Category> categories = categoryDAO.getItems(0,5);
+            List<Actor> actors = actorDAO.getItems(0,20);
+
+            Film film = new Film();
+            film.setActors(new HashSet<>(actors));
+            film.setRating(Rating.NC17);
+            film.setSpecialFeatures(Set.of(Feachure.TRAILERS, Feachure.COMMENTARIES));
+            film.setLength((short) 165);
+            film.setReplacementCost(BigDecimal.TEN);
+            film.setRentalRate(BigDecimal.ZERO);
+            film.setLanguage(language);
+            film.setDescription("new world order");
+            film.setTitle("World Order 2");
+            film.setRentalDuration((byte) 44);
+            film.setOriginalLanguage(language);
+            film.setCategories(new HashSet<>(categories));
+            film.setYear(Year.now());
+            filmDAO.save(film);
+
+            FilmText filmText = new FilmText();
+            filmText.setFilm(film);
+            filmText.setId(film.getId());
+            filmText.setDescriprion("new world order");
+            filmText.setTitle("World Order 2");
+            filmTextDAO.save(filmText);
+
+            session.getTransaction().commit();
+        }
     }
 
     private void customerRentInventory(Customer customer) {
