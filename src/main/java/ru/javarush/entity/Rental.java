@@ -1,6 +1,8 @@
 package ru.javarush.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,6 +30,18 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdate;
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
     public Integer getId() {
         return id;
